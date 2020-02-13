@@ -1,19 +1,17 @@
-// function first() {
-//     let i = 2;
-//     let j =2;
-//     nextPrime:
-//     while (i<=100){
-//         while (j<i){
-//             if(i%j == 0){
-//                 continue nextPrime;
-//             }
-//             j++;
-//         }
-//         console.log(i);
-//         i++;
-//     }
-// }
+function first() {
+    let n = 100;
 
+nextPrime:
+for (let i = 2; i <= n; i++) {
+
+  for (let j = 2; j < i; j++) {
+    if (i % j === 0) continue nextPrime;
+  }
+
+  console.log( i );
+}
+}
+first();
 function second() {
     let even = " Парне";
     let notEven = " Непарне";
@@ -29,13 +27,13 @@ function second() {
     }while (i<=10)
 
 }
-//second();
+second();
 function third() {
     for (let i = 0; i<10; console.log(i++)){
 
     }
 }
-//third();
+third();
 function fourth() {
     let a = prompt("Enter number");
     let char = "*";
@@ -57,7 +55,7 @@ function fourth() {
         i++;
     }
 }
-//fourth();
+fourth();
 function Square() {
     let a = prompt("Enter number");
     let s, i, j,
@@ -69,7 +67,7 @@ function Square() {
         out += ' ';
     }
     for(i = 0; i< size/2; i++){
-        board += '# ';
+        board += '* ';
         console.log(out, board);
         out = out.substring(0, out.length - 1);
     }
@@ -80,7 +78,7 @@ function Square() {
         console.log(out, board);
     }
 }
-//Square();
+Square();
 function Fifth() {
     let numb = 10000;
     let result =0;
@@ -96,7 +94,7 @@ function Fifth() {
     console.log("Result: "+ result);
     console.log("Count: " + count);
 }
-//Fifth();
+Fifth();
 function Sixth() {
     let month = parseInt(prompt("Enter the number less than 12"));
     switch (month) {
@@ -138,12 +136,12 @@ function Sixth() {
             break;
     }
 }
-//Sixth();
+Sixth();
 function Seventh() {
     let celsium = parseInt(prompt("Enter the celsium dergees"));
     alert("Farenheit equivalent temperature:"+((celsium*(9/5)+32)));
 }
-//Seventh();
+Seventh();
 function Eight() {
     let day = parseInt(prompt("Enter the number of day"));
     switch (day) {
@@ -171,4 +169,20 @@ function Eight() {
 
     }
 }
-//Eight();
+Eight();
+let fun = function () {
+    let arr1 = new Array(10);
+    for (i = 10; i>0; i--){
+        arr1[i] = i;
+    }
+    for(i =0 ; i<arr1.length;i++){
+        console.log(arr1[i]);
+    }
+};
+function ArrFunc() {
+    let arr = [1,2,3,4,5,6,7,8,9,0];
+    alert(arr[3]);
+}
+fun();
+ArrFunc();
+

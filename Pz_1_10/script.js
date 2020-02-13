@@ -7,8 +7,9 @@ function perimeter(side,count) {
 }
 console.log(perimeter(10,4));
 function pedestiranFlowRate(cycleLenght,trafficLenght,turningLenght) {
-    let red = cycleLenght/3;
-    return "green "+red;
+    let light = cycleLenght - trafficLenght - turningLenght;
+
+    return light;
 }
 console.log(pedestiranFlowRate(120,20,40));
 function calculate(param1,param2,param3) {

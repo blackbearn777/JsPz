@@ -114,37 +114,36 @@ function Second(lenght, width) {
 }
 //Second(8,8);
 function Third(numb) {
-    // if(numb>9999 || numb<0){
-    //     return null;
-    // }
     let res = "";
     let str = String(numb);
-    for (let i = str.length; i > 0; i--){
-        if(str.length ==4){
+    
+    switch(str.length){
+        case 4:
             res = "Одиниці: " + str[0] + " Десятки: "+str[1]+" Сотні: "+str[2]+" Тисячі: "+str[3];
-        }
-        else if(str.length==3){
-            res = "Одиниці: " + str[0] + " Десятки: "+str[1]+" Сотні: "+str[2]
-        }
-        else if(str.length==2){
+            break;
+        case 3:
+            res = "Одиниці: " + str[0] + " Десятки: "+str[1]+" Сотні: "+str[2];
+            break;
+        case 2:
             res = "Одиниці: " + str[0] + " Десятки: "+str[1];
-        }
-        else if(i==1){
-            res = "Одиниці: " + str[0]
-        }
+            break;
+        case 1:
+            res = "Одиниці: " + str[0];
+            break;
+        default:
+            alert("I said less than 9999");
+            return null;
+
     }
     return res;
     
 }
 //console.log(Third(895));
 function Fourth(str) {
-//     let res='';
-//    for (let i = 0; i< str.lenght; i++) {
-//        if(str[i] =='.'){
-//            res = str.substring(i, str.lenght-1);
-//            break;
-//        }
-//    } 
+    if(str.split('.').lenght >1){
+        alert("Thats not a file path");
+        return null;
+    }
    return str.split('.')[1];
 }
 //console.log(Fourth('dgdfgdffhfhhfhggg.html'));
@@ -174,29 +173,31 @@ function Fivth(a) {
 let a = [1,24,5,3,4,5,5,5,6,64,6,3,5,];
 //Fivth(a);
 function Seventh(email) {
-    var r = email.match(/^[0-9a-z-\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/i);
-if (!r){
+    var res = email.match(/^[0-9a-z-\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/i);
+if (!res){
 	alert("False");
 	
 }
 else{
     alert("True");
 }
-}
+} 
 //Seventh("blackebarn77gmail.com");
-function Eighth(str) {
+function Sixth(str) {
     let vowels = "aeiouy";
-    let arr = str.split(" ");
+    let arr = str.split('.');
     let vow =0;
     console.log(arr.lenght);
     for (let i = 0; i < arr.length; i++) {
         for (let j = 0; j < vowels.length; j++) {
-            if(arr[i][0] == vowels[j]){
+            if(arr[i][0].toLowerCase() == vowels[j]){
                 vow++;
             }
         }
-        console.log("Text: " + str + " vowels: " + vow + " not vowels: " + (arr.lenght-vow));
+        
     }
+    let nv = arr.length - vow;
+    console.log("Text: " + str + " vowels: " + vow + " not vowels: " + nv);
 }
-str = "Eba Nona Tora Ova Yola Ina Mina Eta Yas";
-Eighth(str);
+str = "Eba.Nona.Tora.Ova.Yola.Ina.Mina.Eta.Yas";
+//Sixth(str);

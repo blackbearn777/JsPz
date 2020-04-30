@@ -31,23 +31,42 @@ app.get('/',(req,res)=>{
 });
 app.post('/login',(req,res)=>{
 
-    res.render('login',{
-
-    });
-});
-app.post('/loginUser',urlencodedParser,(req,res)=>{
-
-    res.send(req.body.uname);
+    res.render('login');
 });
 app.post('/logUser',urlencodedParser,(req,res)=>{
-
+    let login = req.body.login;
+    let password = req.body.psw;
+    let query_select = "SELECT * FROM user WHERE login = ?";
+    conn.query(query_select, [login], (err,result)=>{
+        if(result){
+            if(result[0].password == password){
+                
+                res.render('userPage',{
+                    message: 'Hello ' +login,
+                    login:login,
+                    email:result[0].email
+                    
+                })
+            }
+            else{
+                res.render('login',{
+                    message : 'Login or password incorrect'
+                })
+            }
+        }
+        else{
+            res.render('login',{
+                message : 'Login or password  incorrect'
+            })
+        }
+    })
 })
 app.post('/regUser',urlencodedParser,(req,res)=>{
     let login = req.body.login;
     let email = req.body.email;
     let password = req.body.psw;
     let passwordRepeat = req.body.pswRepeat;
-    query_select ='SELECT * FROM user WHERE login = ? '
+    let query_select ='SELECT login FROM user WHERE login = ? '
     conn.query(query_select,[login],(err,result)=>{
        if(result>0){
         res.send('This user already exist');
@@ -66,8 +85,5 @@ app.post('/regUser',urlencodedParser,(req,res)=>{
 
 
 app.post('/register',(req,res)=>{
-res.render('register',{
-
-})
-    
+res.render('register');  
 });

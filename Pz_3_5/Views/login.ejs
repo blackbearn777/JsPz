@@ -6,25 +6,17 @@
         
     </head>
 <body>
-    <form action="/loginUser" method="post">
-        
-      
         <div class="container">
-          <form action="/logUser">
+          <form action="/logUser" method="POST">
           <label for="uname"><b>Username</b></label>
-          <input type="text" placeholder="Enter Username" name="uname" required>
-      
+          <input type="text" placeholder="Enter Username" name="login" required>
           <label for="psw"><b>Password</b></label>
           <input type="password" placeholder="Enter Password" name="psw" required>
-      
+          <% if (message.length > 0) { %>
+            <div class="alert alert-success col-sm-12"><%= message %></div>
+          <% } %>
           <button type="submit">Login</button>
+          </form>
         </div>
-      </form>
-        <!-- <div class="container" style="background-color:#f1f1f1">
-          <button type="button"  class="cancelbtn">Cancel</button>
-         
-        </div> -->
-      </form>
-    
 </body>
 </html>

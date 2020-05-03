@@ -31,7 +31,9 @@ app.get('/',(req,res)=>{
 });
 app.post('/login',(req,res)=>{
 
-    res.render('login');
+    res.render('login',{
+        message:''
+    });
 });
 app.post('/logUser',urlencodedParser,(req,res)=>{
     let login = req.body.login;
@@ -40,13 +42,27 @@ app.post('/logUser',urlencodedParser,(req,res)=>{
     conn.query(query_select, [login], (err,result)=>{
         if(result){
             if(result[0].password == password){
-                
-                res.render('userPage',{
-                    message: 'Hello ' +login,
-                    login:login,
-                    email:result[0].email
-                    
-                })
+                req.session.loggedin = true;
+                req.session.username = login;
+                req.session.psw = result[0].password;
+                req.session.email = result[0].email;
+                if(login == 'admin'){
+                    let query_select = "SELECT * FROM user";
+                    conn.query(query_select, [login],(err,results)=>{
+                        res.render('allUsersPage',{
+                            users:results
+                        })
+                    });
+                }
+                else{
+
+                    res.render('userPage',{
+                        message: 'Hello ' +login,
+                        login:login,
+                        email:result[0].email
+                        
+                    })
+                }
             }
             else{
                 res.render('login',{
@@ -82,6 +98,39 @@ app.post('/regUser',urlencodedParser,(req,res)=>{
         res.send('password not the same');
     }
 })
+app.post('/editUser', urlencodedParser,(req,res)=>{
+    res.render('editUserPage',{
+        oldUserLogin:req.session.username,
+        login: req.session.username,
+        password: req.session.psw,
+        email:req.session.email
+
+    })
+})
+app.post('/acceptEdit',urlencodedParser,(req,res)=>{
+    let oldLogin =req.body.oldUserLogin;
+    console.log(oldLogin);
+    let login =req.body.login;
+    let email =req.body.email;
+    let psw = req.body.newPsw;
+    let query_update ='UPDATE user SET login = ?, email =?, password =? WHERE login =?';
+        conn.query(query_update,[login,email,psw,oldLogin],(err,result)=>{
+            if(err) throw err;
+            res.render('userPage',{
+                message: 'Welcome '+ login,
+                login:login,
+                email:email
+            })
+        })
+    
+})
+app.post('/quit',urlencodedParser,(req,res)=>{
+    res.render('login',{
+        message:""
+    })
+})
+
+
 
 
 app.post('/register',(req,res)=>{

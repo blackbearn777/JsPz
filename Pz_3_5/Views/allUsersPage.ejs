@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ua">
+<head>
+    <link rel="stylesheet" href="registerStyle.css">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Form</title>
+</head>
+<body>
+    
+<table>
+    <tr>
+        <th>Login</th>
+        <th>Email</th>
+        <th></th>
+    </tr>
+      <% users.forEach((value)=>{ %>
+        <tr>
+            <td><%= value.login%></td>
+            <td><%= value.email%></td>
+            <td><a href="users/<%= value.login%>">Оновити</a></td>
+            
+        </tr>
+      <%})%>
+</table>
+
+</body>
+</html>

@@ -4,7 +4,7 @@ function First(){
     let userName = os.userInfo().username;
     console.log(userName);
 }
-First();
+//First();
 function Second(){
     const chalk = require('chalk');
 console.log(chalk.red('Text in red'));

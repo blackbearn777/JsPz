@@ -13,7 +13,7 @@ app.use(session({
 	resave: true,
 	saveUninitialized: true
 }));
-app.listen(3000, ()=>{
+app.listen(3000,  ()=>{
     console.log('Server started');
 });;
 let conn = mysql.createConnection({
